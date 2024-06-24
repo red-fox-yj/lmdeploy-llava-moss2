@@ -6,6 +6,7 @@ from .chat import SubCliChat
 from .cli import CLI
 from .lite import SubCliLite
 from .serve import SubCliServe
+from lmdeploy.vl.model.llava_moss2.model.language_model import llava_moss2 # 提前注册模型
 
 
 def run():

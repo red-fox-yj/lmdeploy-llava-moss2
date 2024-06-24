@@ -25,7 +25,7 @@ def load_vl_model(model_path: str, with_llm: bool = False):
                 arch = 'InternLMXComposer2ForCausalLM'
     if arch == 'QWenLMHeadModel':
         return QwenVisionModel(model_path, with_llm)
-    elif arch in ['LlavaLlamaForCausalLM', 'LlavaMistralForCausalLM']:
+    elif arch in ['LlavaLlamaForCausalLM', 'LlavaMistralForCausalLM', 'LlavaMoss2ForCausalLM',]:
         projector_type = config.get('mm_projector_type', 'linear')
         mm_vision_tower = config.get('mm_vision_tower', '')
         if '_Norm' in projector_type:

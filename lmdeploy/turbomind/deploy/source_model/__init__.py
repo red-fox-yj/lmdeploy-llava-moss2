@@ -7,6 +7,7 @@ from .internlm2 import InternLM2AwqModel, InternLM2Model  # noqa: F401
 from .internvl import InternVLModel  # noqa: F401
 from .llama import LlamaModel  # noqa: F401
 from .llama_awq import LlamaAwqModel  # noqa: F401
+from .moss2 import Moss2Model # noqa: F401
 from .meta_llama import MetaLlamaModel  # noqa: F401
 from .qwen import QwenModel  # noqa: F401
 from .qwen_awq import QwenAwqModel  # noqa: F401

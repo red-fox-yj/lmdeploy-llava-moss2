@@ -18,6 +18,9 @@ docker run --rm -it \
     --env PLAT_NAME="${PLAT_NAME}" \
     --env USERID="${USERID}" \
     --env GROUPID="${GROUPID}" \
+    --env http_proxy="http://10.176.52.116:7890" \
+    --env https_proxy="http://10.176.52.116:7890" \
+    --env all_proxy="socks5://10.176.52.116:7891" \
     --volume "$(pwd)/../../:/lmdeploy" \
     --volume "$(pwd)/${OUTPUT_DIR}:/lmdeploy_build" \
     --volume "$(pwd)/entrypoint_build.sh:/entrypoint_build.sh" \

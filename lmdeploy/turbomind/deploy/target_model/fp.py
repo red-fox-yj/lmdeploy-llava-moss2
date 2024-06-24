@@ -37,7 +37,7 @@ class TurbomindModel(BaseOutputModel):
                 visit = True
                 w1, _, _ = bin.ffn(i)
                 inter_size = w1.t().shape[-1]
-                qb, _, _, _ = bin.attn_bias(i)
+                qb = bin.attn_bias(i)[0] # 获取attn_bias的第一个返回值
                 if qb is not None:
                     attn_bias = 1
                 break

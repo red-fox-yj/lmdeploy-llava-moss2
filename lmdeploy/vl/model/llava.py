@@ -82,6 +82,10 @@ class LlavaVisionModel(VisonModel):
             from llava.model.language_model.llava_mistral import \
                 LlavaMistralConfig
             self.config = LlavaMistralConfig.from_pretrained(self.model_path)
+        elif self.arch == 'LlavaMoss2ForCausalLM':
+            from .llava_moss2.model.language_model.llava_moss2 import \
+                LlavaMoss2Config
+            self.config = LlavaMoss2Config.from_pretrained(self.model_path)    
         else:
             assert 0, f'unsupported arch {self.arch}'
 
@@ -99,12 +103,18 @@ class LlavaVisionModel(VisonModel):
         if not self.with_llm:
             # remove the LLM part from llava model.
             # Instead, Load the LLM part to turbomind engine
-            del model.lm_head
-            del model.model.embed_tokens
+            if hasattr(model, 'output'): # 适配moss
+                del model.output
+            if hasattr(model.model, 'tok_embeddings'): # 适配moss
+                del model.model.tok_embeddings
+            if hasattr(model, 'lm_head'):
+                del model.lm_head
+            if hasattr(model.model, 'embed_tokens'):
+                del model.model.embed_tokens
             del model.model.layers
             del model.model.norm
         else:
-            self.vl_model = model
+            self.vl_model = model 
 
         # init empty vision_tower, the embedding layer in CLIPVisionModel
         # can't init right under init_empty_weights

@@ -1049,6 +1049,40 @@ class MistralChat(BaseChatTemplate):
                 return 'mistral'
             if 'mixtral' in model_path:
                 return 'mixtral'
+            
+@MODELS.register_module(name=['moss2'])
+class Moss2Chat(BaseChatTemplate):
+    def __init__(self,
+                 system='<|im_start|>system\n',
+                 meta_instruction='You are an AI assistant whose name is MOSS.\n- MOSS is a conversational language model that is developed by Fudan University(复旦大学).',
+                 user='<|im_start|>user\n',
+                 assistant='<|im_start|>assistant\n',
+                 eosys='<|end_of_system|>\n',
+                 eoh='<|end_of_user|>\n',
+                 eoa='<|end_of_assistant|>',
+                 separator='\n',
+                 stop_words=['<|im_end|>', '<|action_end|>', '<|end_of_moss|>']):
+        super().__init__(system=system,
+                         meta_instruction=meta_instruction,
+                         eosys=eosys,
+                         user=user,
+                         eoh=eoh,
+                         assistant=assistant,
+                         eoa=eoa,
+                         separator=separator,
+                         stop_words=stop_words)
+
+    @classmethod
+    def match(cls, model_path: str) -> Optional[str]:
+        """Return the model_name that was registered to MODELS.
+
+        Args:
+            model_path (str): the model path used for matching.
+        """
+        model_path = model_path.lower()
+        if 'instruct' in model_path or 'llava' in model_path:
+            if 'moss2' in model_path:
+                return 'moss2'
 
 
 @MODELS.register_module(name=['gemma'])

@@ -28,6 +28,7 @@ SUPPORTED_ARCHS = dict(
     # llava
     LlavaLlamaForCausalLM='llama',
     LlavaMistralForCausalLM='llama',
+    LlavaMoss2ForCausalLM='moss2',
     # xcomposer2
     InternLMXComposer2ForCausalLM='xcomposer2',
     # internvl

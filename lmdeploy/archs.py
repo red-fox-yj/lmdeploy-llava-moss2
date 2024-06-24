@@ -118,7 +118,7 @@ def check_vl_llm(config: dict) -> bool:
             if 'InternLMXComposer2ForCausalLM' in v:
                 return True
     arch = config['architectures'][0]
-    if arch in ['LlavaLlamaForCausalLM', 'LlavaMistralForCausalLM']:
+    if arch in ['LlavaLlamaForCausalLM', 'LlavaMistralForCausalLM', 'LlavaMoss2ForCausalLM']:
         return True
     elif arch == 'QWenLMHeadModel' and 'visual' in config:
         return True
